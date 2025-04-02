@@ -1,15 +1,17 @@
 {
-    "compilerOptions": {
-      "target": "ES2022",
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
-      "outDir": "dist/scripts",
-      "rootDir": "scripts",
-      "esModuleInterop": true,
-      "resolveJsonModule": true,
-      "moduleDetection": "force",
-      "strict": true
+  "compilerOptions": {
+    "paths": {
+      "next/font/google": ["../node_modules/next/dist/client/font/google.js"]
     },
-    "include": ["scripts/**/*.ts"]
-  }
-  
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "dist/scripts",
+    "rootDir": "scripts",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "strict": true
+  },
+  "include": ["scripts/**/*.ts"]
+}
