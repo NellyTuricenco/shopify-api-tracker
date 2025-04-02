@@ -5,12 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "update": "tsc --project tsconfig.scripts.json && node dist/scripts/updateApiData.js",
-    "clean": "rm -rf dist",
-    "rebuild": "npm run clean && npm run update"
+    "build": "next build && next export",
+    "build:scripts": "tsc --project tsconfig.scripts.json",
+    "update": "node dist/scripts/updateApiData.js",
+    "export": "next export",
+    "start": "echo 'Use `npm run dev` or deploy the static site' && exit 0"
   },
   "dependencies": {
     "axios": "^1.8.4",
