@@ -1,0 +1,42 @@
+[
+  {
+    "version": "2024-04",
+    "status": "deprecated",
+    "releaseDate": "2024-04-01",
+    "deprecationDate": "2025-04-01",
+    "breakingChanges": []
+  },
+  {
+    "version": "2024-07",
+    "status": "current",
+    "releaseDate": "2024-07-01",
+    "deprecationDate": "2025-07-01",
+    "breakingChanges": []
+  },
+  {
+    "version": "2025-01",
+    "status": "current",
+    "releaseDate": "2025-01-01",
+    "deprecationDate": "2026-01-01",
+    "breakingChanges": [
+      "Now available: JS Buy SDK v3.0  — \n        <div class=\"\"><p>We released the last and final version of JavaScript Buy SDK v3.0 to extend its useful life following the <a href=\"https://shopify.dev/changelog/deprecation-of-checkout-apis\" target=\"_blank\" class=\"body-link\">Checkout API deprecation</a>. Upgrading to v3.0 will extend the grace period of SDK's <code>.checkout</code> interface by replacing it with an equivalent interface based on the <a href=\"https://shopify.dev/docs/api/storefront/2025-01/objects/Cart\" target=\"_blank\" class=\"body-link\">Cart API</a> with some limitations inherent to the different scope of both APIs. See this <a href=\"https://github.com/Shopify/js-buy-sdk/blob/main/README.md#how-to-upgrade-to-v30\" target=\"_blank\" class=\"body-link\">upgrade guide</a> with supported use cases to help the transition. </p>\n\n<p>The other option to remain operational is to switch to the <a href=\"https://github.com/Shopify/shopify-app-js/tree/main/packages/api-clients/storefront-api-client#readme\" target=\"_blank\" class=\"body-link\">Storefront API Client</a>, which manages the API’s authentication information and provides various methods that enable devs to interact with the API. See this <a href=\"https://github.com/Shopify/js-buy-sdk/tree/main/migration-guide\" target=\"_blank\" class=\"body-link\">migration guide</a> for more details.   </p>\n\n<p><strong>Critical Deadline: July 1, 2025 11:00 AM ET</strong>. You must implement one of these changes by this date, or customers will not be able to complete purchases. Please choose the option that best suits your needs and timelines.</p>\n</div>\n      "
+    ]
+  },
+  {
+    "version": "2025-04",
+    "status": "current",
+    "releaseDate": "2025-04-01",
+    "deprecationDate": "2026-04-01",
+    "breakingChanges": [
+      "New finance KYC information field available for Shopify-approved finance apps — \n        <div class=\"\"><p>As of API version 2025-04, <a href=\"https://shopify.dev/docs/api/usage/access-scopes#authenticated-access-scopes\" target=\"_blank\" class=\"body-link\">Shopify-approved finance apps</a> can retrieve the following information using the <a href=\"https://shopify.dev/docs/api/admin-graphql/unstable/objects/FinanceKycInformation\" target=\"_blank\" class=\"body-link\"><code>FinanceKycInformation</code></a> object, on behalf of an approved shop <a href=\"https://shopify.dev/docs/api/admin-graphql/unstable/objects/StaffMember\" target=\"_blank\" class=\"body-link\">staff member</a>:</p>\n\n<ul>\n<li>Business address</li>\n<li>Business type</li>\n<li>Industry</li>\n<li>Business legal name</li>\n<li>Shop owner information</li>\n<li>Tax identification information</li>\n<li>Finances access policies</li>\n</ul>\n\n<p>The following webhooks related to updating staff with access to the app will also be available:\n* <code>FINANCE_APP_STAFF_MEMBER_DELETE</code> - Triggers when a staff with access to all or some finance app has been removed\n* <code>FINANCE_APP_STAFF_MEMBER_GRANT</code> - Triggers when a staff is granted access to all or some finance app\n* <code>FINANCE_APP_STAFF_MEMBER_REVOKE</code> - Triggers when a staff's access to all or some finance app has been revoked\n* <code>FINANCE_APP_STAFF_MEMBER_UPDATE</code> - Triggers when a staff's information has been updated\n* <code>FINANCE_KYC_INFORMATION_UPDATE</code> -   Triggers whenever shop's finance KYC information was updated</p>\n</div>\n      ",
+      "The `X-Shopify-API-Deprecated-Reason` HTTP header will return actual GraphQL deprecations if any — \n        <div class=\"\"><p>As of <code>2025-04</code>, the <code>X-Shopify-API-Deprecated-Reason</code> HTTP header will return the list of detected deprecations instead of a generic URL.</p>\n\n<p><strong>Example</strong></p>\n\n<p>As of <code>2025-04</code>:    <code>X-Shopify-API-Deprecated-Reason: Shop.products, Shop.productVariants</code>\nBefore <code>2025-04</code>: <code>X-Shopify-API-Deprecated-Reason: https://shopify.dev/api/usage/versioning#deprecation-practices</code></p>\n</div>\n      "
+    ]
+  },
+  {
+    "version": "2025-07",
+    "status": "upcoming",
+    "releaseDate": "2025-07-01",
+    "deprecationDate": "2026-07-01",
+    "breakingChanges": []
+  }
+]

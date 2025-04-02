@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { parseStringPromise } from 'xml2js';
-import { ChangelogItem } from '@/types/changelog';
+import { ChangelogItem } from '@/types/changelog.js';
 
 export async function fetchChangelog(): Promise<ChangelogItem[]> {
   const url = 'https://shopify.dev/changelog/feed.xml';

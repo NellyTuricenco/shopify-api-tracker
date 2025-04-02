@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { parseStringPromise } from 'xml2js';
-import fs from 'fs';
-import path from 'path';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc.js';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import axios from "axios";
+import { parseStringPromise } from "xml2js";
+import fs from "fs";
+import path from "path";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 dayjs.extend(utc);
 
@@ -22,14 +22,15 @@ interface ChangelogItem {
 
 interface APIData {
   version: string;
-  status: 'current' | 'upcoming' | 'deprecated';
+  status: "current" | "upcoming" | "deprecated";
   releaseDate?: string;
   deprecationDate?: string;
   breakingChanges?: string[];
 }
 
-const FEED_URL = 'https://shopify.dev/changelog/feed.xml';
-const DATA_FILE_PATH = path.join(__dirname, '../data/api_versions.json');
+const FEED_URL = "https://shopify.dev/changelog/feed.xml";
+const PROJECT_ROOT = path.resolve(__dirname, "../../");
+const DATA_FILE_PATH = path.join(PROJECT_ROOT, "data/api_versions.json");
 
 async function fetchChangelog(): Promise<ChangelogItem[]> {
   const { data } = await axios.get(FEED_URL);
@@ -47,27 +48,29 @@ function extractApiVersions(text: string): string[] {
   return Array.from(versions);
 }
 
-function determineStatus(version: string): 'current' | 'upcoming' | 'deprecated' {
+function determineStatus(
+  version: string
+): "current" | "upcoming" | "deprecated" {
   const today = dayjs.utc();
-  const [year, quarterRaw] = version.split('-').map(Number);
+  const [year, quarterRaw] = version.split("-").map(Number);
   const quarter = (quarterRaw - 1) / 3;
   const releaseDate = dayjs.utc(`${year}-${quarter * 3 + 1}-01`);
-  const deprecationDate = releaseDate.add(1, 'year');
+  const deprecationDate = releaseDate.add(1, "year");
 
-  if (today.isBefore(releaseDate)) return 'upcoming';
-  if (today.isAfter(deprecationDate)) return 'deprecated';
-  return 'current';
+  if (today.isBefore(releaseDate)) return "upcoming";
+  if (today.isAfter(deprecationDate)) return "deprecated";
+  return "current";
 }
 
 function extractReleaseDate(version: string): string {
-  const [year, quarterRaw] = version.split('-').map(Number);
+  const [year, quarterRaw] = version.split("-").map(Number);
   const quarter = (quarterRaw - 1) / 3;
-  return dayjs.utc(`${year}-${quarter * 3 + 1}-01`).format('YYYY-MM-DD');
+  return dayjs.utc(`${year}-${quarter * 3 + 1}-01`).format("YYYY-MM-DD");
 }
 
 function extractDeprecationDate(version: string): string {
   const releaseDate = extractReleaseDate(version);
-  return dayjs.utc(releaseDate).add(1, 'year').format('YYYY-MM-DD');
+  return dayjs.utc(releaseDate).add(1, "year").format("YYYY-MM-DD");
 }
 
 async function generateApiData() {
@@ -92,8 +95,26 @@ async function generateApiData() {
         });
       }
 
-      if (/breaking change/i.test(entry.title + entry.description)) {
-        versionMap.get(version)?.breakingChanges?.push(entry.title);
+      const content = `${entry.title} ${entry.description}`.toLowerCase();
+
+      const breakingKeywords = [
+        "breaking change",
+        "deprecated",
+        "will be removed",
+        "has been removed",
+        "no longer supported",
+        "not supported",
+        "migration guide",
+        "need to migrate",
+        "incompatible change",
+      ];
+
+      const isBreaking = breakingKeywords.some((keyword) =>
+        content.includes(keyword)
+      );
+
+      if (isBreaking) {
+        versionMap.get(version)?.breakingChanges?.push(`${entry.title} — ${entry.description}`);
       }
     });
   }
@@ -107,6 +128,6 @@ async function generateApiData() {
 }
 
 generateApiData().catch((err) => {
-  console.error('❌ Failed to generate API data:', err);
+  console.error("❌ Failed to generate API data:", err);
   process.exit(1);
 });
