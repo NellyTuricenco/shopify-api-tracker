@@ -11,12 +11,24 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  // ✅ Global rules for all .ts/.tsx
   {
     files: ["**/*.ts", "**/*.tsx"],
     rules: {
-      'import/extensions': 'off',
+      "import/extensions": "off"
+    },
+  },
+
+  // ✅ Override for scripts: allow require()
+  {
+    files: ["scripts/**/*.ts"],
+    rules: {
+      "@typescript-eslint/no-var-requires": "off",
+      "import/no-commonjs": "off", // if you're using this rule too
     },
   },
 ];
 
 export default eslintConfig;
+
+

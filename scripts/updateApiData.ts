@@ -1,9 +1,9 @@
-import axios from "axios";
-import { parseStringPromise } from "xml2js";
-import fs from "fs";
-import path from "path";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc.js";
+const axios = require("axios");
+const { parseStringPromise } = require("xml2js");
+const fs = require("fs");
+const path = require("path");
+const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc");
 
 dayjs.extend(utc);
 interface ChangelogItem {

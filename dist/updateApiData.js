@@ -1,15 +1,11 @@
-import axios from "axios";
-import { parseStringPromise } from "xml2js";
-import fs from "fs";
-import path from "path";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc.js";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+"use strict";
+const axios = require("axios");
+const { parseStringPromise } = require("xml2js");
+const fs = require("fs");
+const path = require("path");
+const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc");
 dayjs.extend(utc);
-// ESM-safe __dirname equivalent
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 const FEED_URL = "https://shopify.dev/changelog/feed.xml";
 const PROJECT_ROOT = path.resolve(__dirname, "../../");
 const DATA_FILE_PATH = path.join(PROJECT_ROOT, "data/api_versions.json");
