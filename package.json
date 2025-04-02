@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && next export",
+    "build": "next build",
     "build:scripts": "tsc --project tsconfig.scripts.json",
     "update": "node dist/scripts/updateApiData.js",
-    "export": "next export",
     "start": "echo 'Use `npm run dev` or deploy the static site' && exit 0"
   },
   "dependencies": {
