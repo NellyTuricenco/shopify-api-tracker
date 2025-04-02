@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "noEmit": false,
-    "moduleResolution": "node"
+    "moduleResolution": "NodeNext"
   },
   "include": ["scripts/**/*.ts"],
   "exclude": ["node_modules", "app", "src"]
