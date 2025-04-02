@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "outDir": "dist",
     "noEmit": false,
     "esModuleInterop": true,
@@ -10,7 +10,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["scripts/**/*.ts"],
+  "include": ["scripts/**/*"],
   "exclude": ["node_modules", "app", "src", "components"]
 }
-

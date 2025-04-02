@@ -4,15 +4,8 @@ import fs from "fs";
 import path from "path";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 
 dayjs.extend(utc);
-
-// ESM-safe __dirname equivalent
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 interface ChangelogItem {
   title: string;
   link: string;
