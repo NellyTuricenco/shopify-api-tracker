@@ -24,11 +24,10 @@ const eslintConfig = [
     files: ["scripts/**/*.ts"],
     rules: {
       "@typescript-eslint/no-var-requires": "off",
-      "import/no-commonjs": "off", // if you're using this rule too
+      "@typescript-eslint/no-require-imports": "off",
+      "import/no-commonjs": "off", 
     },
   },
 ];
 
 export default eslintConfig;
-
-
