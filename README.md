@@ -87,10 +87,8 @@ node dist/scripts/updateApiData.js
 ## 🧠 Future Ideas
 
 - [ ] Expand/collapse all buttons
-- [ ] Deploy to Vercel or GitHub Pages
 - [ ] Filter by status (deprecated, current)
 - [ ] Highlight newly added versions this week
-- [ ] RSS or webhook integration
 
 ---
 
