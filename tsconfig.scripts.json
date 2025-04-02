@@ -1,17 +1,9 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "paths": {
-      "next/font/google": ["../node_modules/next/dist/client/font/google.js"]
-    },
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "dist/scripts",
-    "rootDir": "scripts",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "moduleDetection": "force",
-    "strict": true
+    "outDir": "dist",
+    "noEmit": false
   },
-  "include": ["scripts/**/*.ts"]
+  "include": ["scripts/**/*.ts"],
+  "exclude": ["node_modules", "app", "src"]
 }
