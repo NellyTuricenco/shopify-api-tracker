@@ -37,16 +37,23 @@ jobs:
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: update API version data [auto]"
           git push
 
-      - name: Build and export static site
+      - name: Build static site
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Setup SSH access
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Deploy to External GitHub Repo via SSH
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          external_repository: NellyTuricenco/shopify-api-tracker
           publish_branch: gh-pages
-          force_orphan: true
-          keep_files: false
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          publish_dir: ./out
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
+          force_orphan: true
